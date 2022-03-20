@@ -9,6 +9,9 @@ export function handleSwapped(event: Swapped): void {
   swap.recipient = event.params.recipient
   swap.fromToken = event.params.fromToken
   swap.destToken = event.params.destToken
+  swap.fromAmount = event.params.fromAmount
+  swap.destAmount = event.params.destAmount
+  swap.reward = event.params.reward
 
   // Entities can be written to the store with `.save()`
   swap.save()
