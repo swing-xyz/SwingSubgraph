@@ -1,0 +1,12 @@
+type Swap @entity {
+  id: ID!
+  from: Bytes! # address
+  recipient: Bytes! # address
+  fromToken: Bytes! # address
+  destToken: Bytes! # address
+  fromAmount: BigInt!
+  destAmount: BigInt!
+  reward: BigInt!
+}
+
+

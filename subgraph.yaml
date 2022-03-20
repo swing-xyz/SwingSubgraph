@@ -1,0 +1,24 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: SwitchView
+    network: bsc
+    source:
+      address: "0xc712cAe87a85a8179A474CC705cCb2649A939812"
+      abi: SwitchView
+      startBlock: 15671277
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Swapped
+      abis:
+        - name: SwitchView
+          file: ./abis/SwitchView.json
+      eventHandlers:
+        - event: Swapped(address,address,address,address,uint256,uint256,uint256)
+          handler: handleSwapped
+      file: ./src/mapping.ts
