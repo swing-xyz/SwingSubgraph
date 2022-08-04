@@ -7,6 +7,21 @@ type Swap @entity {
   fromAmount: BigInt!
   destAmount: BigInt!
   reward: BigInt!
+  usdAmount: BigInt!
+  timestamp: BigInt!
+}
+
+type User @entity {
+  id: ID!
+  volumeUSD: BigInt!
+  tradeCount: BigInt!
+}
+
+type Summary @entity {
+  id: ID! # 1
+  totalVolumeUSD: BigInt!
+  tradeCount: BigInt!
+  userCount: BigInt!
 }
 
 
