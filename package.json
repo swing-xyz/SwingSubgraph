@@ -1,13 +1,13 @@
 {
-  "name": "SwingBSC",
+  "name": "SwingPolygon",
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ ethdev23/SwingBSC",
-    "create-local": "graph create --node http://localhost:8020/ ethdev23/SwingBSC",
-    "remove-local": "graph remove --node http://localhost:8020/ ethdev23/SwingBSC",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 ethdev23/SwingBSC"
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ ethdev23/SwingPolygon",
+    "create-local": "graph create --node http://localhost:8020/ ethdev23/SwingPolygon",
+    "remove-local": "graph remove --node http://localhost:8020/ ethdev23/SwingPolygon",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 ethdev23/SwingPolygon"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.21.0",
