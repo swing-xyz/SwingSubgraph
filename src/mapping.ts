@@ -34,15 +34,15 @@ export function handleSwapped(event: Swapped): void {
 
   swap.save()
 
-  // let summary = Summary.load((1).toString())
-  // if (summary == null) {
-  //   summary = new Summary((1).toString())
-  //   // summary.totalVolumeUSD = BigInt.fromString(swap.usdAmount.toString())
-  //   // summary.tradeCount = ONE_BI
-  // } else {
-  //   // summary.totalVolumeUSD = summary.totalVolumeUSD.plus(BigInt.fromString(swap.usdAmount.toString()))
-  //   // summary.tradeCount = summary.tradeCount.plus(ONE_BI)
-  // }
+  let summary = Summary.load((1).toString())
+  if (summary == null) {
+    summary = new Summary((1).toString())
+    summary.totalVolumeUSD = BigInt.fromString(swap.usdAmount.toString())
+    summary.tradeCount = ONE_BI
+  } else {
+    summary.totalVolumeUSD = summary.totalVolumeUSD.plus(BigInt.fromString(swap.usdAmount.toString()))
+    summary.tradeCount = summary.tradeCount.plus(ONE_BI)
+  }
 
   let user = User.load(event.params.recipient.toHex())
   if (user == null) {
@@ -83,6 +83,15 @@ export function handleCrosschainSwapRequest(event: CrosschainSwapRequest): void 
 
   swap.save()
 
+  let summary = Summary.load((1).toString())
+  if (summary == null) {
+    summary = new Summary((1).toString())
+    summary.totalVolumeUSD = BigInt.fromString(swap.usdAmount.toString())
+    summary.tradeCount = ONE_BI
+  } else {
+    summary.totalVolumeUSD = summary.totalVolumeUSD.plus(BigInt.fromString(swap.usdAmount.toString()))
+    summary.tradeCount = summary.tradeCount.plus(ONE_BI)
+  }
 
   let user = User.load(event.params.from.toHex())
   if (user == null) {
