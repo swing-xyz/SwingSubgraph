@@ -10,6 +10,16 @@
         "internalType":"address",
         "name":"_switchEventAddress",
         "type":"address"
+      },
+      {
+        "internalType":"address",
+        "name":"_paraswapProxy",
+        "type":"address"
+      },
+      {
+        "internalType":"address",
+        "name":"_augustusSwapper",
+        "type":"address"
       }
     ],
     "stateMutability":"nonpayable",
@@ -130,11 +140,41 @@
     "inputs":[
       {
         "internalType":"address",
+        "name":"_newAugustusSwapper",
+        "type":"address"
+      }
+    ],
+    "name":"setAugustusSwapper",
+    "outputs":[
+
+    ],
+    "stateMutability":"nonpayable",
+    "type":"function"
+  },
+  {
+    "inputs":[
+      {
+        "internalType":"address",
         "name":"newOwner",
         "type":"address"
       }
     ],
     "name":"setOwner",
+    "outputs":[
+
+    ],
+    "stateMutability":"nonpayable",
+    "type":"function"
+  },
+  {
+    "inputs":[
+      {
+        "internalType":"address",
+        "name":"_newParaswapProxy",
+        "type":"address"
+      }
+    ],
+    "name":"setParaswapProxy",
     "outputs":[
 
     ],
@@ -210,6 +250,45 @@
       }
     ],
     "name":"swap",
+    "outputs":[
+      {
+        "internalType":"uint256",
+        "name":"returnAmount",
+        "type":"uint256"
+      }
+    ],
+    "stateMutability":"payable",
+    "type":"function"
+  },
+  {
+    "inputs":[
+      {
+        "internalType":"contract IERC20",
+        "name":"fromToken",
+        "type":"address"
+      },
+      {
+        "internalType":"contract IERC20",
+        "name":"destToken",
+        "type":"address"
+      },
+      {
+        "internalType":"uint256",
+        "name":"amount",
+        "type":"uint256"
+      },
+      {
+        "internalType":"address",
+        "name":"recipient",
+        "type":"address"
+      },
+      {
+        "internalType":"bytes",
+        "name":"callData",
+        "type":"bytes"
+      }
+    ],
+    "name":"swapWithParaswap",
     "outputs":[
       {
         "internalType":"uint256",

@@ -4,9 +4,9 @@ import { Switch } from "../generated/SwitchEvent/Switch"
 import { Swap, User, Summary } from "../generated/schema"
 
 export const ONE_BI = BigInt.fromI32(1)
-export const SWITCH_CONTRACT_ADDRESS = Address.fromString("0x1cDAbC61eb7Ed728C960Ed276A07465dFCCE096f")
-export const USDC_ADDRESS = Address.fromString("0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d")
-export const BASE = BigInt.fromString("1000000000000000000")
+export const SWITCH_CONTRACT_ADDRESS = Address.fromString("0xaE8fb34b81f8a5d9e24341f2f789facf35F24397")
+export const USDC_ADDRESS = Address.fromString("0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174")
+export const BASE = BigInt.fromString("1000000")
 export const PARTS = 30
 export function handleSwapped(event: Swapped): void {
   let swap = Swap.load(event.transaction.hash.toHex())
