@@ -4,6 +4,7 @@ import { Switch } from "../generated/SwitchEvent/Switch"
 import { Swap, User, Summary } from "../generated/schema"
 
 export const ONE_BI = BigInt.fromI32(1)
+export const ZERO_BI = BigInt.fromI32(0)
 export const SWITCH_CONTRACT_ADDRESS = Address.fromString("0xb4fAf6FC44BF6ee38CDeEAC5457aD1D07868B8B3")
 export const USDC_ADDRESS = Address.fromString("0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174")
 export const BASE = BigInt.fromString("1000000")
@@ -46,6 +47,7 @@ export function handleSwapped(event: Swapped): void {
     summary = new Summary((1).toString())
     summary.totalVolumeUSD = BigInt.fromString(swap.usdAmount.toString())
     summary.tradeCount = ONE_BI
+    summary.userCount = ZERO_BI
   } else {
     summary.totalVolumeUSD = summary.totalVolumeUSD.plus(BigInt.fromString(swap.usdAmount.toString()))
     summary.tradeCount = summary.tradeCount.plus(ONE_BI)
@@ -95,6 +97,7 @@ export function handleCrosschainSwapRequest(event: CrosschainSwapRequest): void 
     summary = new Summary((1).toString())
     summary.totalVolumeUSD = BigInt.fromString(swap.usdAmount.toString())
     summary.tradeCount = ONE_BI
+    summary.userCount = ZERO_BI
   } else {
     summary.totalVolumeUSD = summary.totalVolumeUSD.plus(BigInt.fromString(swap.usdAmount.toString()))
     summary.tradeCount = summary.tradeCount.plus(ONE_BI)
