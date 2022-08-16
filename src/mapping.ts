@@ -4,7 +4,7 @@ import { Switch } from "../generated/SwitchEvent/Switch"
 import { Swap, User, Summary } from "../generated/schema"
 
 export const ONE_BI = BigInt.fromI32(1)
-export const SWITCH_CONTRACT_ADDRESS = Address.fromString("0xaE8fb34b81f8a5d9e24341f2f789facf35F24397")
+export const SWITCH_CONTRACT_ADDRESS = Address.fromString("0xb4fAf6FC44BF6ee38CDeEAC5457aD1D07868B8B3")
 export const USDC_ADDRESS = Address.fromString("0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174")
 export const BASE = BigInt.fromString("1000000")
 export const PARTS = 30
@@ -29,8 +29,15 @@ export function handleSwapped(event: Swapped): void {
   let switchContract = Switch.bind(
       SWITCH_CONTRACT_ADDRESS
   );
-  let result = switchContract.getExpectedReturn(event.params.fromToken, USDC_ADDRESS, event.params.fromAmount, BigInt.fromI32(PARTS))
-  swap.usdAmount = result.value0.div(BASE)
+  // let result = switchContract.getExpectedReturn(event.params.fromToken, USDC_ADDRESS, event.params.fromAmount, BigInt.fromI32(PARTS))
+  let callResult = switchContract.try_getExpectedReturn(event.params.fromToken, USDC_ADDRESS, event.params.fromAmount, BigInt.fromI32(PARTS));
+  if (callResult.reverted) {
+    log.info('getExpectedReturn reverted', []);
+    swap.usdAmount = BigInt.fromI32(0);
+  } else {
+    swap.usdAmount = callResult.value.value0.div(BASE);
+  }
+  // swap.usdAmount = result.value0.div(BASE)
 
   swap.save()
 
@@ -49,13 +56,13 @@ export function handleSwapped(event: Swapped): void {
     user = new User(event.params.recipient.toHex())
     user.volumeUSD = swap.usdAmount
     user.tradeCount = BigInt.fromI32(1)
-    // summary.userCount = summary.userCount.plus(BigInt.fromI32(1))
+    summary.userCount = summary.userCount.plus(BigInt.fromI32(1))
   } else {
     user.volumeUSD = user.volumeUSD.plus(swap.usdAmount)
     user.tradeCount = user.tradeCount.plus(BigInt.fromI32(1))
   }
 
-  // summary.save()
+  summary.save()
   user.save()
 }
 
@@ -98,12 +105,12 @@ export function handleCrosschainSwapRequest(event: CrosschainSwapRequest): void 
     user = new User(event.params.from.toHex())
     user.volumeUSD = swap.usdAmount
     user.tradeCount = BigInt.fromI32(1)
-    // summary.userCount = summary.userCount.plus(BigInt.fromI32(1))
+    summary.userCount = summary.userCount.plus(BigInt.fromI32(1))
   } else {
     user.volumeUSD = user.volumeUSD.plus(swap.usdAmount)
     user.tradeCount = user.tradeCount.plus(BigInt.fromI32(1))
   }
 
-  // summary.save()
+  summary.save()
   user.save()
 }
