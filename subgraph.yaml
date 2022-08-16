@@ -4,9 +4,9 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: SwitchEvent
-    network: bsc
+    network: avalanche
     source:
-      address: "0x3F0a0675E6eDC95d224BEE649c92A490390f2B38"
+      address: "0x8D0157d166B4D5776dF2B2De1966eE377b440B75"
       abi: SwitchEvent
       startBlock: 17888473
     mapping:

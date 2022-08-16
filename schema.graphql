@@ -6,7 +6,7 @@ type Swap @entity {
   destToken: Bytes! # address
   fromAmount: BigInt!
   destAmount: BigInt!
-  reward: BigInt!
+  reward: BigInt
   usdAmount: BigInt!
   timestamp: BigInt!
 }
