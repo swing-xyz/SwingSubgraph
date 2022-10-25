@@ -51,13 +51,13 @@ export function handleSwapped(event: Swapped): void {
     user = new User(event.params.recipient.toHex())
     user.volumeUSD = swap.usdAmount
     user.tradeCount = BigInt.fromI32(1)
-    // summary.userCount = summary.userCount.plus(BigInt.fromI32(1))
+    summary.userCount = summary.userCount.plus(BigInt.fromI32(1))
   } else {
     user.volumeUSD = user.volumeUSD.plus(swap.usdAmount)
     user.tradeCount = user.tradeCount.plus(BigInt.fromI32(1))
   }
 
-  // summary.save()
+  summary.save()
   user.save()
 }
 
